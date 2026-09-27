@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>XV Anos • Anna Clara • Baile de Inverno</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           PALETA: AZUL SERAFIN & INVERNO GLACIAL
+           ========================================================= */
+
+        :root {
+            /* Fundo principal em tons de azul serafin profundo e celestial */
+            --azul-serafin-fundo: #122c4a;
+            --azul-serafin-fundo-claro: #1c4573;
+            
+            /* Cartões com efeito de vidro temperado no tom serafin */
+            --azul-serafin-card: rgba(28, 69, 115, 0.55);
+            --azul-serafin-hover: rgba(38, 92, 153, 0.75);
+            
+            /* Botões e destaques na cor Serafin vibrante */
+            --azul-serafin-destaque: #4a8bcc;
+            --azul-serafin-gradiente: #366ba3;
+
+            --azul-gelo: #eaf2f8;
+            --prata-metalizado: #a6c4df;
+            --prata-brilho: #d1e5f5;
+            --texto-claro: #f1f6fb;
+            --borda-glacial: rgba(209, 229, 245, 0.35);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: "Playfair Display", Georgia, serif;
+            background: linear-gradient(180deg, var(--azul-serafin-fundo) 0%, var(--azul-serafin-fundo-claro) 50%, var(--azul-serafin-fundo) 100%);
+            background-attachment: fixed;
+            color: var(--texto-claro);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .snow-container {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            pointer-events: none; z-index: 1; overflow: hidden;
+        }
+        .floco {
+            position: absolute; top: -10vh; color: var(--azul-gelo);
+            user-select: none; text-shadow: 0 0 8px rgba(234, 242, 248, 0.9);
+            animation: quedaNeve linear infinite;
+        }
+        @keyframes quedaNeve {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.9; }
+            85% { opacity: 0.8; }
+            100% { transform: translateY(115vh) translateX(35px) rotate(360deg); opacity: 0; }
+        }
+        .floco:nth-child(1)  { left: 5%;  font-size: 14px; animation-duration: 9s;  }
+        .floco:nth-child(2)  { left: 14%; font-size: 22px; animation-duration: 13s; animation-delay: 2s; }
+        .floco:nth-child(3)  { left: 24%; font-size: 10px; animation-duration: 7s;  animation-delay: 4s; }
+        .floco:nth-child(4)  { left: 33%; font-size: 18px; animation-duration: 11s; animation-delay: 1s; }
+        .floco:nth-child(5)  { left: 45%; font-size: 26px; animation-duration: 15s; animation-delay: 5s; }
+        .floco:nth-child(6)  { left: 56%; font-size: 13px; animation-duration: 8s;  animation-delay: 3s; }
+        .floco:nth-child(7)  { left: 66%; font-size: 20px; animation-duration: 12s; animation-delay: 6s; }
+        .floco:nth-child(8)  { left: 78%; font-size: 11px; animation-duration: 7.5s;animation-delay: 0.5s; }
+        .floco:nth-child(9)  { left: 88%; font-size: 24px; animation-duration: 14s; animation-delay: 4.5s; }
+        .floco:nth-child(10) { left: 95%; font-size: 16px; animation-duration: 10s; animation-delay: 2.5s; }
+
+        .music-btn {
+            position: fixed; bottom: 25px; right: 25px; width: 50px; height: 50px;
+            border-radius: 50%; background: var(--azul-serafin-card);
+            border: 1px solid var(--borda-glacial); color: var(--azul-gelo);
+            font-size: 20px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; z-index: 1000; backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5); transition: all 0.3s ease;
+        }
+        .music-btn:hover { background: var(--azul-serafin-hover); transform: scale(1.1); }
+        .tocando { animation: pulsarMusica 2s infinite alternate; }
+        @keyframes pulsarMusica {
+            0% { box-shadow: 0 0 10px rgba(209, 229, 245, 0.4); }
+            100% { box-shadow: 0 0 25px rgba(234, 242, 248, 0.8); }
+        }
+
+        header, section, footer { position: relative; z-index: 2; }
+
+        @keyframes flutuarNome {
+            0% { transform: translateY(0px); text-shadow: 0 4px 15px rgba(209, 229, 245, 0.4); }
+            50% { transform: translateY(-14px); text-shadow: 0 15px 35px rgba(234, 242, 248, 0.75); }
+            100% { transform: translateY(0px); text-shadow: 0 4px 15px rgba(209, 229, 245, 0.4); }
+        }
+
+        .capa {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 40px 20px;
+            background: radial-gradient(circle at 50% 25%, rgba(166, 196, 223, 0.22) 0%, transparent 60%);
+        }
+        .capa-conteudo { max-width: 650px; width: 100%; }
+        .pequeno-texto {
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase;
+            letter-spacing: 6px; font-size: 11px; color: var(--prata-brilho); margin-bottom: 25px;
+        }
+        .numero { font-size: clamp(100px, 25vw, 185px); line-height: 0.85; color: var(--azul-gelo); }
+        .nome {
+            font-size: clamp(48px, 10vw, 86px); font-style: italic; color: #ffffff;
+            margin-top: 15px; display: inline-block; animation: flutuarNome 4s ease-in-out infinite;
+        }
+        .linha-prata {
+            width: 90px; height: 1px; background: linear-gradient(90deg, transparent, var(--prata-brilho), transparent);
+            margin: 25px auto;
+        }
+
+        .countdown-container {
+            display: flex; justify-content: center; gap: 15px; margin-top: 40px; font-family: 'Montserrat', sans-serif;
+        }
+        .tempo-box {
+            background: var(--azul-serafin-card); backdrop-filter: blur(8px);
+            border: 1px solid var(--borda-glacial); padding: 15px 20px; border-radius: 8px;
+            text-align: center; min-width: 75px;
+        }
+        .tempo-numero { font-size: 28px; font-weight: 600; color: var(--azul-gelo); display: block; }
+        .tempo-texto { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--prata-metalizado); }
+
+        section { padding: 90px 20px; }
+        .container { max-width: 850px; margin: auto; }
+        .titulo-secao { text-align: center; font-size: 34px; font-style: italic; margin-bottom: 45px; color: var(--azul-gelo); }
+        
+        .foto-aniversariante {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 12px;
+            border: 2px solid var(--prata-brilho);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(166, 196, 223, 0.35);
+            margin: 0 auto 40px auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .convite-texto {
+            text-align: center; max-width: 700px; margin: auto;
+            background: var(--azul-serafin-card); backdrop-filter: blur(14px);
+            padding: 50px 40px; border-radius: 8px; border: 1px solid var(--borda-glacial);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+        }
+        .convite-texto p { font-size: 18px; margin-bottom: 22px; color: var(--azul-gelo); }
+        .frase { font-size: 24px !important; font-style: italic; color: var(--prata-brilho); margin: 35px 0 !important; }
+
+        .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .info-card {
+            background: var(--azul-serafin-card); backdrop-filter: blur(12px);
+            padding: 30px 20px; text-align: center; border-radius: 6px;
+            border: 1px solid var(--borda-glacial); transition: all 0.3s ease;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .info-card:hover { transform: translateY(-4px); border-color: var(--prata-brilho); background: var(--azul-serafin-hover); }
+        .icone { font-size: 26px; margin-bottom: 10px; color: var(--azul-gelo); }
+        .info-titulo { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 3px; font-size: 11px; color: var(--prata-metalizado); margin-bottom: 8px; font-weight: 600; }
+        .info-texto { font-size: 17px; color: var(--azul-gelo); }
+        .info-detalhe { font-family: 'Montserrat', sans-serif; font-size: 12px; color: var(--prata-metalizado); margin-top: 5px; line-height: 1.5;}
+
+        .btn-pequeno {
+            display: inline-block; margin-top: 12px; padding: 8px 15px; font-family: 'Montserrat', sans-serif;
+            font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+            background: var(--azul-serafin-destaque); color: white; text-decoration: none;
+            border-radius: 4px; border: 1px solid var(--prata-brilho); transition: 0.3s;
+            cursor: pointer; width: 100%; max-width: 180px;
+        }
+        .btn-pequeno:hover { background: var(--prata-brilho); color: var(--azul-serafin-fundo-claro); }
+
+        .pix-box { grid-column: 1 / -1; background: linear-gradient(135deg, var(--azul-serafin-gradiente), var(--azul-serafin-card)); }
+        .pix-chave {
+            font-family: 'Montserrat', sans-serif; font-size: 16px; letter-spacing: 2px;
+            margin: 15px 0; background: rgba(0,0,0,0.25); padding: 10px; border-radius: 4px; user-select: all;
+        }
+
+        .botao {
+            display: inline-block; margin-top: 20px; padding: 18px 40px;
+            background: linear-gradient(135deg, var(--azul-serafin-destaque) 0%, var(--azul-serafin-gradiente) 100%); color: #ffffff; text-decoration: none;
+            font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 500;
+            text-transform: uppercase; letter-spacing: 3px; border-radius: 4px;
+            border: 1px solid var(--borda-glacial); transition: all 0.3s ease;
+        }
+        .botao:hover { border-color: var(--prata-brilho); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(74, 139, 204, 0.4); }
+
+        footer { padding: 55px 20px; text-align: center; background: #0a1829; border-top: 1px solid var(--borda-glacial); }
+        footer .nome-footer { font-size: 35px; font-style: italic; margin-bottom: 10px; color: var(--azul-gelo); }
+        footer p { font-family: 'Montserrat', sans-serif; font-size: 11px; letter-spacing: 3px; color: var(--prata-metalizado); }
+
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .countdown-container { flex-wrap: wrap; }
+            .tempo-box { flex: 1; min-width: 60px; padding: 10px; }
+            .tempo-numero { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="musica-fundo" src="musica.mp3" loop preload="auto"></audio>
+    <div class="music-btn" id="btn-play" onclick="toggleMusica()">🎵</div>
+
+    <div class="snow-container" aria-hidden="true">
+        <span class="floco">❄</span><span class="floco">❅</span><span class="floco">•</span><span class="floco">❄</span>
+        <span class="floco">✧</span><span class="floco">❅</span><span class="floco">❄</span><span class="floco">•</span>
+        <span class="floco">❅</span><span class="floco">❄</span>
+    </div>
+
+    <header class="capa">
+        <div class="capa-conteudo">
+            <div class="pequeno-texto">Você está convidado para os</div>
+            <div class="numero">XV</div>
+            <div><h1 class="nome">Anna Clara</h1></div>
+            <div class="linha-prata"></div>
+            <div class="pequeno-texto" style="margin-bottom: 0;">Baile de Inverno</div>
+            
+            <div class="countdown-container">
+                <div class="tempo-box"><span class="tempo-numero" id="cd-dias">00</span><span class="tempo-texto">Dias</span></div>
+                <div class="tempo-box"><span class="tempo-numero" id="cd-horas">00</span><span class="tempo-texto">Horas</span></div>
+                <div class="tempo-box"><span class="tempo-numero" id="cd-min">00</span><span class="tempo-texto">Minutos</span></div>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2 class="titulo-secao">Um Momento para Guardar</h2>
+            
+            <img src="Gemini_Generated_Image_8qk7jc8qk7jc8qk7.jpg" alt="Foto de Anna Clara" class="foto-aniversariante">
+
+            <div class="convite-texto">
+                <p>Quinze anos representam o início de uma nova história. Uma fase de sonhos, descobertas, amizades e momentos que merecem brilhar para sempre.</p>
+                <p>Por isso, quero ao meu lado as pessoas queridas que iluminam os meus dias para celebrar este capítulo tão esperado.</p>
+                <p class="frase">"Que a magia deste inverno seja o reflexo de sonhos que começam a florescer."</p>
+                <p>Será uma honra imensa receber você nesta comemoração.</p>
+                <p style="font-size: 26px; font-style: italic; color: white; margin-top: 30px;">Anna Clara</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: rgba(28, 69, 115, 0.2); border-top: 1px solid var(--borda-glacial);">
+        <div class="container">
+            <h2 class="titulo-secao">Anote na Agenda</h2>
+            <div class="info-grid">
+                
+                <div class="info-card">
+                    <div class="icone">❄</div>
+                    <div class="info-titulo">Data & Hora</div>
+                    <div class="info-texto">Sábado, 07/11/2026<br>às 21h00</div>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=XV+Anos+Anna+Clara+-+Baile+de+Inverno&dates=20261107T210000Z/20261108T030000Z&details=Celebra%C3%A7%C3%A3o+dos+XV+anos+da+Anna+Clara!&location=Recanto+Dona+Carmelita,+Brazl%C3%A2ndia" target="_blank" class="btn-pequeno">Salvar na Agenda</a>
+                </div>
+
+                <div class="info-card">
+                    <div class="icone">📍</div>
+                    <div class="info-titulo">Local</div>
+                    <div class="info-texto">Recanto Dona Carmelita</div>
+                    <div class="info-detalhe">BR-080, Brazlândia – DF</div>
+                    <div style="display: flex; gap: 10px; width: 100%; justify-content: center; margin-top: 10px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Recanto+Dona+Carmelita+Brazlandia+BR-080" target="_blank" class="btn-pequeno">Google Maps</a>
+                        <a href="https://waze.com/ul?q=Recanto%20Dona%20Carmelita%20Brazlandia" target="_blank" class="btn-pequeno">Abrir Waze</a>
+                    </div>
+                </div>
+
+                <div class="info-card" style="grid-column: 1 / -1;">
+                    <div class="icone">✨</div>
+                    <div class="info-titulo">Dress Code</div>
+                    <div class="info-texto">Passeio Completo / Social Elegante</div>
+                    <div class="info-detalhe" style="max-width: 550px; margin-top: 10px; font-size: 13px;">
+                        Pedimos com carinho que as cores <b>Azul, Prata e Branco</b> sejam reservadas exclusivamente para a aniversariante.<br><br>
+                        <i>* Agradecemos se puderem escolher outras cores para o seu traje!</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="titulo-secao">Opções de Presentes</h2>
+            <div class="info-grid">
+                <div class="info-card"><div class="icone">💄</div><div class="info-titulo">Maquiagem</div><div class="info-detalhe">Itens que combinem com o estilo da Anna Clara.</div></div>
+                <div class="info-card"><div class="icone">👗</div><div class="info-titulo">Roupas</div><div class="info-detalhe">Tamanho: P / 34-36</div></div>
+                <div class="info-card"><div class="icone">👠</div><div class="info-titulo">Calçados</div><div class="info-detalhe">Número: 36</div></div>
+                <div class="info-card"><div class="icone">🌸</div><div class="info-titulo">Perfumes</div><div class="info-detalhe">Ela ama perfumes doces! 🍬✨</div></div>
+                <div class="info-card"><div class="icone">🤍</div><div class="info-titulo">Acessórios</div><div class="info-detalhe">Preferência por acessórios na cor prata.</div></div>
+                <div class="info-card"><div class="icone">🎁</div><div class="info-titulo">Outras Opções</div><div class="info-detalhe">Fique à vontade para escolher algo com a carinha dela! O mais importante é o carinho 💕</div></div>
+
+                <div class="info-card pix-box">
+                    <div class="icone">💰</div>
+                    <div class="info-titulo">Presente em Dinheiro (Pix)</div>
+                    <div class="info-detalhe" style="color: #fff;">Para quem preferir contribuir dessa forma, será muito bem-vindo!</div>
+                    <div class="pix-chave" id="chave-pix">61986621861</div>
+                    <div class="info-detalhe">Anna Clara de Souza Oliveira</div>
+                    <button class="btn-pequeno" onclick="copiarPix()" id="btn-copiar">Copiar Chave Celular</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: rgba(28, 69, 115, 0.2); border-top: 1px solid var(--borda-glacial); text-align: center;">
+        <div class="container">
+            <h2 class="titulo-secao">Confirme sua Presença</h2>
+            <p style="color: var(--prata-brilho); max-width: 600px; margin: auto; font-weight: 300;">
+                Para prepararmos tudo com muito carinho, confirme sua presença e aproveite para deixar uma mensagem especial para a Anna Clara!
+            </p>
+            <a class="botao" href="https://wa.me/556185884047?text=Olá!%20Gostaria%20de%20confirmar%20minha%20presença%20no%20Baile%20de%20Inverno%20da%20Anna%20Clara.%20Aproveito%20para%20deixar%20um%20recado:%20" target="_blank">
+                Confirmar & Enviar Recado
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="nome-footer">Anna Clara</div>
+        <p>XV ANOS • BAILE DE INVERNO ❄️ • 07.11.2026</p>
+        <p style="text-transform: none; margin-top: 10px; color: var(--azul-gelo);">Com carinho, Anna Clara 🤍</p>
+    </footer>
+
+    <script>
+        const dataFesta = new Date("Nov 07, 2026 21:00:00").getTime();
+        const x = setInterval(function() {
+            const agora = new Date().getTime();
+            const distancia = dataFesta - agora;
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById("cd-dias").innerHTML = dias < 10 ? "0" + dias : dias;
+            document.getElementById("cd-horas").innerHTML = horas < 10 ? "0" + horas : horas;
+            document.getElementById("cd-min").innerHTML = minutos < 10 ? "0" + minutos : minutos;
+
+            if (distancia < 0) {
+                clearInterval(x);
+                document.getElementById("cd-dias").innerHTML = "00";
+                document.getElementById("cd-horas").innerHTML = "00";
+                document.getElementById("cd-min").innerHTML = "00";
+            }
+        }, 1000);
+
+        function copiarPix() {
+            navigator.clipboard.writeText("61986621861").then(() => {
+                const btn = document.getElementById("btn-copiar");
+                btn.innerHTML = "Chave Copiada! ✔";
+                btn.style.background = "#d1e5f5"; btn.style.color = "#122c4a";
+                setTimeout(() => {
+                    btn.innerHTML = "Copiar Chave Celular";
+                    btn.style.background = "#4a8bcc"; btn.style.color = "white";
+                }, 3000);
+            });
+        }
+
+        const audio = document.getElementById("musica-fundo");
+        const btnPlay = document.getElementById("btn-play");
+        let isPlaying = false;
+
+        function toggleMusica() {
+            if (isPlaying) {
+                audio.pause(); btnPlay.classList.remove("tocando"); btnPlay.innerHTML = "🎵";
+            } else {
+                audio.play(); btnPlay.classList.add("tocando"); btnPlay.innerHTML = "⏸";
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
